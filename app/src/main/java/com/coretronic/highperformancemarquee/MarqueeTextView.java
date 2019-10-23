@@ -4,11 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -32,7 +32,7 @@ public class MarqueeTextView extends RecyclerView {
             super.handleMessage(msg);
             switch (msg.what) {
                 case HANDLER_MESSAGE_ID_SCROLL:
-                    MarqueeTextView.this.smoothScrollToPosition(100);
+                    smoothScrollToPosition(100);
                     break;
                 case HANDLER_MESSAGE_ID_TWINK:
                     MarqueeTextView.this.setVisibility(
@@ -69,7 +69,7 @@ public class MarqueeTextView extends RecyclerView {
         setNestedScrollingEnabled(false);
 
 
-        CustomLinearLayoutManager.MILLISECONDS_PER_INCH = textSpeed * 10;
+        CustomLinearLayoutManager.MILLISECONDS_PER_INCH = textSpeed * 10F;
         linearLayoutManager = new CustomLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         setLayoutManager(linearLayoutManager);
 
@@ -128,7 +128,7 @@ public class MarqueeTextView extends RecyclerView {
             shouldStop.set(false);
             new Thread() {
                 public void run() {
-                    android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                    Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                     while (!shouldStop.get()) {
                         try {
                             Thread.sleep(100);

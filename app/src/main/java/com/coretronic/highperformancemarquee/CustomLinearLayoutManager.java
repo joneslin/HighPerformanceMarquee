@@ -2,11 +2,12 @@ package com.coretronic.highperformancemarquee;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 /**
  * Created by Jones Lin on 2019-10-22.
@@ -30,7 +31,6 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
     public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
         final LinearSmoothScroller linearSmoothScroller =
                 new LinearSmoothScroller(recyclerView.getContext()) {
-
                     @Override
                     public PointF computeScrollVectorForPosition(int targetPosition) {
                         return CustomLinearLayoutManager.this
