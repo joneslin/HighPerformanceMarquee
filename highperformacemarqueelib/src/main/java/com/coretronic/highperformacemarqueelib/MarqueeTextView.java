@@ -119,9 +119,6 @@ public class MarqueeTextView extends RecyclerView {
     @Override
     public void onScrolled(int dx, int dy) {
         super.onScrolled(dx, dy);
-        if (linearLayoutManager.findLastCompletelyVisibleItemPosition() == endPosition) {
-            MarqueeTextView.this.scrollToPosition(0);
-        }
     }
 
     public void start() {

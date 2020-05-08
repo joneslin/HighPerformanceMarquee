@@ -29,6 +29,9 @@ public class CustomLinearLayoutManager extends LinearLayoutManager {
 
     @Override
     public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+        if(state.getTargetScrollPosition() == -1) {
+            recyclerView.scrollToPosition(0);
+        }
         final LinearSmoothScroller linearSmoothScroller =
                 new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
